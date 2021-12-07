@@ -11,6 +11,7 @@ const VideoPlayer = ({ videoId, title, description }) => {
         height="360"
         src={videoURL}
         frameborder="0"
+        title={title}
       ></iframe>
       <h2>{title}</h2>
       <h3>{description}</h3>

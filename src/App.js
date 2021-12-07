@@ -5,6 +5,7 @@ import { apiKey } from "./apiKey";
 
 import VideoPlayer from "./components/VideoPlayer/VideoPlayer";
 import RelatedVideos from "./components/RelatedVideos/RelatedVideos";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 const App = () => {
   const [currentVideo, setCurrentVideo] = useState({
@@ -51,6 +52,7 @@ const App = () => {
 
   return (
     <div>
+      <SearchBar />
       <VideoPlayer
         videoId={currentVideo.id.videoId}
         title={currentVideo.snippet.title}
