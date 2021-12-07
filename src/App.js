@@ -50,9 +50,13 @@ const App = () => {
     }
   };
 
+  const searchForVideo = (searchTerm) => {
+    fetchYouTubeVideos(searchTerm);
+  };
+
   return (
     <div>
-      <SearchBar />
+      <SearchBar searchForVideo={searchForVideo} />
       <VideoPlayer
         videoId={currentVideo.id.videoId}
         title={currentVideo.snippet.title}

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ searchForVideo }) => {
   const [search, setSearch] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(search);
+    searchForVideo(search);
   };
+
   return (
     <nav className="navbar navbar-light bg-light">
       <form className="form-inline" onSubmit={handleSubmit}>
