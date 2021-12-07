@@ -18,6 +18,7 @@ const App = () => {
     },
   });
   const [relatedVideos, setRelatedVideos] = useState([]);
+  const [currentComments, setCurrentComments] = useState([]);
 
   useEffect(() => {
     fetchYouTubeVideos("starwars");
@@ -25,7 +26,20 @@ const App = () => {
 
   useEffect(() => {
     fetchRelatedVideos(currentVideo.id.videoId);
+    fetchComments("abc123");
   }, [currentVideo]);
+
+  const fetchComments = async (videoId) => {
+    try {
+      let response = await axios.get(
+        `http://localhost:9000/api/comments/${videoId}`
+      );
+      console.log(response);
+      setCurrentComments(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   const fetchRelatedVideos = async (videoId) => {
     try {
