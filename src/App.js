@@ -15,10 +15,27 @@ const App = () => {
       description: "LOADING",
     },
   });
+  const [relatedVideos, setRelatedVideos] = useState([]);
 
   useEffect(() => {
     fetchYouTubeVideos("starwars");
   }, []);
+
+  useEffect(() => {
+    fetchRelatedVideos(currentVideo.id.videoId);
+  }, [currentVideo]);
+
+  const fetchRelatedVideos = async (videoId) => {
+    try {
+      let response = await axios.get(
+        `https://www.googleapis.com/youtube/v3/search?type=video&relatedToVideoId=${videoId}&key=${apiKey}&part=snippet`
+      );
+      console.log(response.data);
+      setRelatedVideos(response.data.items);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   const fetchYouTubeVideos = async (searchTerm) => {
     try {
@@ -30,6 +47,7 @@ const App = () => {
       console.log(error.message);
     }
   };
+
   return (
     <div>
       <VideoPlayer
