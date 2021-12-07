@@ -4,6 +4,7 @@ import axios from "axios";
 import { apiKey } from "./apiKey";
 
 import VideoPlayer from "./components/VideoPlayer/VideoPlayer";
+import RelatedVideos from "./components/RelatedVideos/RelatedVideos";
 
 const App = () => {
   const [currentVideo, setCurrentVideo] = useState({
@@ -55,6 +56,7 @@ const App = () => {
         title={currentVideo.snippet.title}
         description={currentVideo.snippet.description}
       />
+      <RelatedVideos videos={relatedVideos} />
     </div>
   );
 };
