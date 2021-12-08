@@ -10,6 +10,7 @@ import CommentForm from "./components/CommentForm/CommentForm";
 import CommentList from "./components/CommentList/CommentList";
 
 //TODO: Reply, ReplyList, and form to add reply to comments
+//TODO: Wire up likes/dislikes on comments (PATCH requests and buttons with counter)
 //TODO: Layout project
 //TODO: Style project
 //TODO: Copy project and implement Recoil for state management
