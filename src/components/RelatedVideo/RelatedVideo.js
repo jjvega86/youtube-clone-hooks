@@ -1,8 +1,15 @@
 import React from "react";
 
-const RelatedVideo = ({ title, thumbnail, channelTitle }) => {
+const RelatedVideo = ({
+  title,
+  thumbnail,
+  channelTitle,
+  description,
+  videoId,
+  setVideo,
+}) => {
   return (
-    <div>
+    <div onClick={() => setVideo({ videoId, title, description })}>
       <img src={`${thumbnail}`} alt="video thumbnail" />
       <p>{title}</p>
       <p>{channelTitle}</p>

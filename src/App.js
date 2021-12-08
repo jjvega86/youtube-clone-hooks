@@ -96,7 +96,7 @@ const App = () => {
         title={currentVideo.snippet.title}
         description={currentVideo.snippet.description}
       />
-      <RelatedVideos videos={relatedVideos} />
+      <RelatedVideos videos={relatedVideos} setVideo={changeSelectedVideo} />
     </div>
   );
 };
