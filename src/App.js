@@ -9,9 +9,9 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import CommentForm from "./components/CommentForm/CommentForm";
 import CommentList from "./components/CommentList/CommentList";
 
-//TODO: Send comments down to CommentList as props and test rendering
-//TODO: Add a CommentForm to add comments to a specific video
 //TODO: Reply, ReplyList, and form to add reply to comments
+//TODO: Layout project
+//TODO: Style project
 //TODO: Copy project and implement Recoil for state management
 //TODO: Copy project again and implement Redux for statemanagement
 
