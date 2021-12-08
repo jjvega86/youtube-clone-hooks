@@ -6,8 +6,9 @@ import { apiKey } from "./apiKey";
 import VideoPlayer from "./components/VideoPlayer/VideoPlayer";
 import RelatedVideos from "./components/RelatedVideos/RelatedVideos";
 import SearchBar from "./components/SearchBar/SearchBar";
+import CommentForm from "./components/CommentForm/CommentForm";
+import CommentList from "./components/CommentList/CommentList";
 
-//TODO: Add click event to each RelatedVideo to change currentVideo
 //TODO: Send comments down to CommentList as props and test rendering
 //TODO: Add a CommentForm to add comments to a specific video
 //TODO: Reply, ReplyList, and form to add reply to comments
@@ -33,21 +34,19 @@ const App = () => {
 
   useEffect(() => {
     fetchRelatedVideos(currentVideo.id.videoId);
-    fetchComments("abc123");
+    fetchComments(currentVideo.id.videoId);
   }, [currentVideo]);
 
-  const fetchComments = async (videoId) => {
+  const fetchYouTubeVideos = async (searchTerm) => {
     try {
       let response = await axios.get(
-        `http://localhost:9000/api/comments/${videoId}`
+        `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${apiKey}&part=snippet&type=video&maxResults=5`
       );
-      console.log(response);
-      setCurrentComments(response.data);
+      setCurrentVideo(response.data.items[0]);
     } catch (error) {
       console.log(error.message);
     }
   };
-
   const fetchRelatedVideos = async (videoId) => {
     try {
       let response = await axios.get(
@@ -60,14 +59,28 @@ const App = () => {
     }
   };
 
-  const fetchYouTubeVideos = async (searchTerm) => {
+  const fetchComments = async (videoId) => {
     try {
       let response = await axios.get(
-        `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${apiKey}&part=snippet&type=video&maxResults=5`
+        `http://localhost:9001/api/comments/${videoId}`
       );
-      setCurrentVideo(response.data.items[0]);
+      console.log(response);
+      setCurrentComments(response.data);
     } catch (error) {
       console.log(error.message);
+    }
+  };
+
+  const postComment = async (commentText) => {
+    try {
+      let response = await axios.post(`http://localhost:9001/api/comments/`, {
+        text: commentText,
+        videoId: currentVideo.id.videoId,
+      });
+      console.log(response.data);
+      fetchComments(currentVideo.id.videoId);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -96,6 +109,8 @@ const App = () => {
         title={currentVideo.snippet.title}
         description={currentVideo.snippet.description}
       />
+      <CommentForm postComment={postComment} />
+      <CommentList comments={currentComments} />
       <RelatedVideos videos={relatedVideos} setVideo={changeSelectedVideo} />
     </div>
   );
