@@ -3,7 +3,7 @@ import ReplyList from "../ReplyList/ReplyList";
 import ReplyForm from "../ReplyForm/ReplyForm";
 import axios from "axios";
 
-const Comment = ({ commentId, text, likes, dislikes }) => {
+const Comment = ({ commentId, text, likes, dislikes, getComments }) => {
   const [replies, setReplies] = useState([]);
 
   useEffect(() => {
@@ -32,11 +32,42 @@ const Comment = ({ commentId, text, likes, dislikes }) => {
       console.log(error.message);
     }
   };
+
+  const applyLike = async () => {
+    try {
+      await axios.patch(`http://localhost:9001/api/comments/${commentId}/like`);
+      getComments();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const applyDislike = async () => {
+    try {
+      await axios.patch(
+        `http://localhost:9001/api/comments/${commentId}/dislike`
+      );
+      getComments();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div>
       <p>{text}</p>
-      <p>{likes}</p>
-      <p>{dislikes}</p>
+      <p>
+        <span>
+          <button onClick={applyLike}>+ </button>{" "}
+        </span>
+        {likes}
+      </p>
+      <p>
+        <span>
+          <button onClick={applyDislike}>-</button>
+        </span>{" "}
+        {dislikes}{" "}
+      </p>
       <ReplyList replies={replies} />
       <ReplyForm postReply={postReply} />
     </div>
