@@ -7,6 +7,13 @@ import VideoPlayer from "./components/VideoPlayer/VideoPlayer";
 import RelatedVideos from "./components/RelatedVideos/RelatedVideos";
 import SearchBar from "./components/SearchBar/SearchBar";
 
+//TODO: Add click event to each RelatedVideo to change currentVideo
+//TODO: Send comments down to CommentList as props and test rendering
+//TODO: Add a CommentForm to add comments to a specific video
+//TODO: Reply, ReplyList, and form to add reply to comments
+//TODO: Copy project and implement Recoil for state management
+//TODO: Copy project again and implement Redux for statemanagement
+
 const App = () => {
   const [currentVideo, setCurrentVideo] = useState({
     id: {
@@ -66,6 +73,19 @@ const App = () => {
 
   const searchForVideo = (searchTerm) => {
     fetchYouTubeVideos(searchTerm);
+  };
+
+  const changeSelectedVideo = (videoData) => {
+    let video = {
+      id: {
+        videoId: videoData.videoId,
+      },
+      snippet: {
+        title: videoData.title,
+        description: videoData.description,
+      },
+    };
+    setCurrentVideo(video);
   };
 
   return (

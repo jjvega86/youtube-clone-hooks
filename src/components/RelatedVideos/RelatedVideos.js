@@ -9,6 +9,7 @@ const RelatedVideos = ({ videos }) => {
           key={video.id.videoId}
           thumbnail={video.snippet.thumbnails.default.url}
           title={video.snippet.title}
+          description={video.snippet.description}
           channelTitle={video.snippet.channelTitle}
         />
       );
