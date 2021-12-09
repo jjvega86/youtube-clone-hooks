@@ -4,17 +4,11 @@ const VideoPlayer = ({ videoId, title, description }) => {
   const videoURL = `https://www.youtube.com/embed/${videoId}?autoplay=1&origin=http://example.com`;
   return (
     <div>
-      <iframe
-        id="ytplayer"
-        type="text/html"
-        width="640"
-        height="360"
-        src={videoURL}
-        frameborder="0"
-        title={title}
-      ></iframe>
-      <h2>{title}</h2>
-      <h3>{description}</h3>
+      <div class="ratio ratio-16x9">
+        <iframe src={videoURL} frameborder="0" title={title}></iframe>
+      </div>
+      <p className="display-6 mt-2">{title}</p>
+      <p className="lead">{description.substring(0, 100)}...</p>
     </div>
   );
 };

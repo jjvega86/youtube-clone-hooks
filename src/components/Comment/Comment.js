@@ -54,19 +54,15 @@ const Comment = ({ commentId, text, likes, dislikes, getComments }) => {
   };
 
   return (
-    <div>
-      <p>{text}</p>
+    <div className="card border-secondary mt-3">
+      <div className="card-body lead">{text}</div>
       <p>
-        <span>
-          <button onClick={applyLike}>+ </button>{" "}
-        </span>
+        <button onClick={applyLike}>+ </button>
         {likes}
       </p>
       <p>
-        <span>
-          <button onClick={applyDislike}>-</button>
-        </span>{" "}
-        {dislikes}{" "}
+        <button onClick={applyDislike}>-</button>
+        {dislikes}
       </p>
       <ReplyList replies={replies} />
       <ReplyForm postReply={postReply} />

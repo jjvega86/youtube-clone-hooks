@@ -9,8 +9,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import CommentForm from "./components/CommentForm/CommentForm";
 import CommentList from "./components/CommentList/CommentList";
 
-//TODO: Wire up likes/dislikes on comments (PATCH requests and buttons with counter)
-//TODO: Layout project
+//TODO: Layout project (Stick with Bootstrap? Semantic UI? CSS Grid?)
 //TODO: Style project
 //TODO: Copy project and implement Recoil for state management
 //TODO: Copy project again and implement Redux for statemanagement
@@ -103,16 +102,29 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="container-fluid">
       <SearchBar searchForVideo={searchForVideo} />
-      <VideoPlayer
-        videoId={currentVideo.id.videoId}
-        title={currentVideo.snippet.title}
-        description={currentVideo.snippet.description}
-      />
-      <CommentForm postComment={postComment} />
-      <CommentList comments={currentComments} getComments={refreshComments} />
-      <RelatedVideos videos={relatedVideos} setVideo={changeSelectedVideo} />
+      <div className="row mt-5">
+        <div className="col-lg-1"></div>
+        <div className="col-lg-7">
+          <VideoPlayer
+            videoId={currentVideo.id.videoId}
+            title={currentVideo.snippet.title}
+            description={currentVideo.snippet.description}
+          />
+          <CommentForm postComment={postComment} />
+          <CommentList
+            comments={currentComments}
+            getComments={refreshComments}
+          />
+        </div>
+        <div className="col-lg-4">
+          <RelatedVideos
+            videos={relatedVideos}
+            setVideo={changeSelectedVideo}
+          />
+        </div>
+      </div>
     </div>
   );
 };

@@ -10,12 +10,22 @@ const CommentForm = ({ postComment }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        name="text"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
+    <form className="row mb-5 mt-4" onSubmit={handleSubmit}>
+      <div className="col-md-2">
+        <label for="commentText" className="form-label lead">
+          Add Comment
+        </label>
+      </div>
+      <div className="col-md-6">
+        <input
+          style={{ maxWidth: "300px" }}
+          name="text"
+          id="commentText"
+          className="form-control"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+      </div>
     </form>
   );
 };
