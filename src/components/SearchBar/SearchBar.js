@@ -9,7 +9,10 @@ const SearchBar = ({ searchForVideo }) => {
   };
 
   return (
-    <nav className="navbar navbar-light bg-light">
+    <nav
+      className="navbar navbar-light bg-light bg-gradient px-0"
+      style={{ "--bs-bg-opacity": ".5" }}
+    >
       <div className="container-fluid">
         <form className="d-flex" onSubmit={handleSubmit}>
           <input
@@ -21,7 +24,7 @@ const SearchBar = ({ searchForVideo }) => {
             onChange={(e) => setSearch(e.target.value)}
           />
           <button
-            className="btn btn-outline-success my-2 my-sm-0"
+            className="btn btn-outline-secondary my-2 my-sm-0"
             type="submit"
           >
             Search

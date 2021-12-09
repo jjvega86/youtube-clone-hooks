@@ -3,6 +3,8 @@ import ReplyList from "../ReplyList/ReplyList";
 import ReplyForm from "../ReplyForm/ReplyForm";
 import axios from "axios";
 
+//TODO: Use the Chance library to generate random names for each comment
+
 const Comment = ({ commentId, text, likes, dislikes, getComments }) => {
   const [replies, setReplies] = useState([]);
 
@@ -54,16 +56,24 @@ const Comment = ({ commentId, text, likes, dislikes, getComments }) => {
   };
 
   return (
-    <div className="card border-secondary mt-3">
-      <div className="card-body lead">{text}</div>
-      <p>
-        <button onClick={applyLike}>+ </button>
-        {likes}
-      </p>
-      <p>
-        <button onClick={applyDislike}>-</button>
-        {dislikes}
-      </p>
+    <div className="card w-75 mt-3 border-0">
+      <div className="card-body lead">
+        <div className="card-text">{text} </div>
+        <footer>
+          <button type="button" className="btn btn-light" onClick={applyLike}>
+            👍 &nbsp;&nbsp;<span className="badge bg-secondary">{likes}</span>{" "}
+          </button>
+          <button
+            type="button"
+            className="btn btn-light"
+            onClick={applyDislike}
+          >
+            👎 &nbsp;&nbsp;
+            <span className="badge bg-secondary">{dislikes}</span>{" "}
+          </button>
+        </footer>
+      </div>
+
       <ReplyList replies={replies} />
       <ReplyForm postReply={postReply} />
     </div>

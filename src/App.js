@@ -102,30 +102,32 @@ const App = () => {
   };
 
   return (
-    <div className="container-fluid">
+    <>
       <SearchBar searchForVideo={searchForVideo} />
-      <div className="row mt-5">
-        <div className="col-lg-1"></div>
-        <div className="col-lg-7">
-          <VideoPlayer
-            videoId={currentVideo.id.videoId}
-            title={currentVideo.snippet.title}
-            description={currentVideo.snippet.description}
-          />
-          <CommentForm postComment={postComment} />
-          <CommentList
-            comments={currentComments}
-            getComments={refreshComments}
-          />
-        </div>
-        <div className="col-lg-4">
-          <RelatedVideos
-            videos={relatedVideos}
-            setVideo={changeSelectedVideo}
-          />
+      <div className="container-fluid">
+        <div className="row mt-5">
+          <div className="col-lg-1"></div>
+          <div className="col-lg-7">
+            <VideoPlayer
+              videoId={currentVideo.id.videoId}
+              title={currentVideo.snippet.title}
+              description={currentVideo.snippet.description}
+            />
+            <CommentForm postComment={postComment} />
+            <CommentList
+              comments={currentComments}
+              getComments={refreshComments}
+            />
+          </div>
+          <div className="col-lg-4">
+            <RelatedVideos
+              videos={relatedVideos}
+              setVideo={changeSelectedVideo}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
