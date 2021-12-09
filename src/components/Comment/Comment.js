@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import ReplyList from "../ReplyList/ReplyList";
 import ReplyForm from "../ReplyForm/ReplyForm";
 import axios from "axios";
+import Chance from "chance";
+
+const chance = Chance();
 
 //TODO: Use the Chance library to generate random names for each comment
 
@@ -58,6 +61,7 @@ const Comment = ({ commentId, text, likes, dislikes, getComments }) => {
   return (
     <div className="card w-75 mt-3 border-0">
       <div className="card-body lead">
+        <h5 class="card-title">{chance.first()}</h5>
         <div className="card-text">{text} </div>
         <footer>
           <button type="button" className="btn btn-light" onClick={applyLike}>
